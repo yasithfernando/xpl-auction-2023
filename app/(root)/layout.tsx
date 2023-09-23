@@ -1,3 +1,4 @@
+import Topbar from '@/components/shared/Topbar'
 import '../globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -16,7 +17,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className}`}>
+        <Topbar />
+        <main className='flex flex-row'>
+
+          <section className='main-container'>
+            <div className='w-full'>
+              {children}
+            </div>
+          </section>
+        </main>
+      </body>
     </html>
   )
 }

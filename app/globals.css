@@ -1,6 +1,22 @@
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face{
+  font-family: "Porter";
+  src: url(../public/fonts/PorterSansBlock-Regular.ttf);
+}
+
+@layer components{
+  .main-container {
+      @apply flex min-h-screen flex-1 flex-col items-center px-6 pb-10 pt-16 max-md:pb-32 sm:px-10 lg:px-32;
+    }
+  .topbar {
+      @apply fixed top-0 z-30 flex w-full items-center justify-between bg-light-2 px-6 py-3 lg:px-32;
+    }
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
