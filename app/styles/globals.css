@@ -1,21 +1,25 @@
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face{
+@font-face {
   font-family: "Porter";
   src: url(../../public/fonts/PorterSansBlock-Regular.ttf);
 }
 
-@layer components{
+@font-face {
+  font-family: "Radley";
+  src: url(../../public/fonts/RadleySans-ZVYBK.ttf);
+}
+
+@layer components {
   .main-container {
-      @apply flex min-h-screen flex-1 flex-col items-center px-6 pb-10 pt-16 max-md:pb-32 sm:px-10 lg:px-32;
-    }
+    @apply flex min-h-screen flex-1 flex-col items-center px-4 pb-10 pt-16 max-md:pb-32 sm:px-10 lg:px-32 bg-dark-2;
+  }
+
   .topbar {
-      @apply fixed top-0 z-30 flex w-full items-center justify-between bg-light-2 px-6 py-3 lg:px-32;
-    }
+    @apply fixed top-0 z-30 flex w-full items-center justify-between bg-light-2 px-6 py-3 lg:px-32;
+  }
 }
 
 :root {
@@ -34,10 +38,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
