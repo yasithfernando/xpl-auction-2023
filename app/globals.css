@@ -9,9 +9,14 @@
   src: url(../public/fonts/PorterSansBlock-Regular.ttf);
 }
 
+@font-face{
+  font-family: "Radley";
+  src: url(../public/fonts/RadleySans-ZVYBK.ttf);
+}
+
 @layer components{
   .main-container {
-      @apply flex min-h-screen flex-1 flex-col items-center px-6 pb-10 pt-16 max-md:pb-32 sm:px-10 lg:px-32;
+      @apply flex min-h-screen flex-1 flex-col items-center px-4 pb-10 pt-16 max-md:pb-32 sm:px-10 lg:px-32 bg-dark-2;
     }
   .topbar {
       @apply fixed top-0 z-30 flex w-full items-center justify-between bg-light-2 px-6 py-3 lg:px-32;

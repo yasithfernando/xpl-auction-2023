@@ -214,6 +214,7 @@ module.exports = {
 
       fontFamily: {
         porter: ["Porter", "sans-serif"],
+        radley: ["Radley", "sans"],
       },
       boxShadow: {
         "count-badge": "0px 0px 6px 2px rgba(219, 188, 159, 0.30)",
