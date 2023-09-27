@@ -12,13 +12,22 @@
   src: url(../../public/fonts/RadleySans-ZVYBK.ttf);
 }
 
+@font-face {
+  font-family: "Aspire";
+  src: url(../../public/fonts/aspire-smallcaps/AspireSCBlackOblique-Regular.ttf);
+}
+
 @layer components {
   .main-container {
     @apply flex min-h-screen flex-1 flex-col items-center px-4 pb-10 pt-16 max-md:pb-32 sm:px-10 lg:px-32 bg-dark-2;
   }
 
   .topbar {
-    @apply fixed top-0 z-30 flex w-full items-center justify-between bg-light-2 px-6 py-3 lg:px-32;
+    @apply fixed top-0 z-30 flex w-full items-center justify-between bg-light-2 py-2 lg:px-32;
+  }
+
+  .countdown-box{
+    @apply flex items-center justify-center mx-1 h-12 lg:h-16 w-12 lg:w-16 bg-indigo-800 lg:text-heading1-normal rounded-lg;
   }
 }
 

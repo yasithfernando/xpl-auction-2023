@@ -195,6 +195,13 @@ module.exports = {
     },
     extend: {
       colors: {
+        "logo-blue": "#2E3192",
+        "logo-skyblue": "#00AEEF",
+        "logo-pink": "#EC008C",
+        "logo-yellow": "#FFC416",
+        "logo-orange": "#F38420",
+        "logo-red": "#E51D2B",
+
         "primary-500": "#877EFF",
         "secondary-500": "#FFB620",
         blue: "#0095F6",
@@ -215,6 +222,7 @@ module.exports = {
       fontFamily: {
         porter: ["Porter", "sans-serif"],
         radley: ["Radley", "sans"],
+        aspire: ["Aspire", "sans-serif"],
       },
       boxShadow: {
         "count-badge": "0px 0px 6px 2px rgba(219, 188, 159, 0.30)",

@@ -11,9 +11,9 @@ function PlayerCard({ player }: { player: Player }) {
     const { name, position, team, image } = player;
     
     return (
-        <div className="flex flex-col justify-center items-center bg-dark-2 rounded-lg w-28 lg:w-44 border border-indigo-500 overflow-hidden">
+        <div className="flex flex-col justify-center items-center bg-dark-2 rounded-lg w-28 lg:w-44 border border-logo-blue overflow-hidden">
             <div className="w-full flex justify-center ">
-                <div className="flex justify-center my-1 pt-2 h-16 lg:h-28 w-16 lg:w-28 relative rounded-full border border-indigo-500">
+                <div className="flex justify-center my-1 pt-2 h-16 lg:h-28 w-16 lg:w-28 relative rounded-full border border-logo-blue">
                     <Image className="rounded-full" src={image} alt={name} fill={true} objectFit="cover" />
                 </div>
             </div>
@@ -33,7 +33,7 @@ function PlayerCard({ player }: { player: Player }) {
                 
 
             </div>
-            <div className="p-1 w-full text-center bg-indigo-500">
+            <div className="p-1 w-full text-center bg-logo-blue">
                 <h2 className="text-heading3-bold text-light-2">75000</h2>
             </div>
         </div>
