@@ -112,7 +112,7 @@ export function ProfileForm() {
           )}
         />
 
-        <div className='flex flex-col lg:flex-row lg:gap-2'>
+        <div className='flex flex-col lg:flex-row gap-6 lg:gap-2'>
             <FormField control={form.control} name="battingStyle" render={({ field }) => (
                 <FormItem className='lg:w-1/2'>
                 <FormLabel>Batting Style</FormLabel>
@@ -155,7 +155,7 @@ export function ProfileForm() {
             />
         </div>
 
-        <div className='flex flex-col lg:flex-row lg:gap-2'>
+        <div className='flex flex-col lg:flex-row gap-6 lg:gap-2'>
             <FormField control={form.control} name="battingLevel" render={({ field }) => (
                 <FormItem className='lg:w-1/2'>
                 <FormLabel>Batting Level {`[ ${field.value} ]`}</FormLabel>
