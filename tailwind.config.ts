@@ -108,6 +108,13 @@ module.exports = {
           fontWeight: "400",
         },
       ],
+      "body2-normal": [
+        "14px",
+        {
+          lineHeight: "110%",
+          fontWeight: "400",
+        },
+      ],
       "body1-bold": [
         "18px",
         {
@@ -201,6 +208,7 @@ module.exports = {
         "logo-yellow": "#FFC416",
         "logo-orange": "#F38420",
         "logo-red": "#E51D2B",
+        "dark-blue": "#062C7D",
 
         "primary-500": "#877EFF",
         "secondary-500": "#FFB620",
