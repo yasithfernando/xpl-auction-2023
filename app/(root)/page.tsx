@@ -3,6 +3,7 @@ import PlayerCard from "@/components/player/PlayerCard"
 import Image from "next/image"
 import hero from "@/public/assets/backgrounds/hero.png"
 import Countdown from "@/components/shared/Countdown"
+import AuthForm from "@/components/auth/AuthForm"
 
 const testPlayer = {
   name: "Ronaldo",

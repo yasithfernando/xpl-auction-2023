@@ -1,5 +1,5 @@
 "use client"
-import { useForm} from 'react-hook-form';
+import { set, useForm} from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 
@@ -24,7 +24,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import Link from 'next/link';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { Database } from '@/lib/database.types';
+import { useEffect, useState } from 'react';
 
 
 const formSchema = z.object({
@@ -41,13 +43,13 @@ const formSchema = z.object({
   bowlingLevel: z.array(z.number().min(0).max(100)),
 })
 
-export function ProfileForm() {
-    // 1. Define your form.
+export function ProfileForm({name, email}: {name: string, email: string}) {
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      email: "",
+      username: name,
+      email: email,
       category: "Batsman",
       battingStyle: "RHB",
       battingLevel: [0],
@@ -57,22 +59,24 @@ export function ProfileForm() {
     },
   })
  
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values)
   }
-  // ...
 
   return (
     <Form {...form}>
+      
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-4/5 lg:w-1/2">
+        <FormDescription className='text-tiny-medium'>
+        Please fill in the following details to complete your registration.
+      </FormDescription>
         <FormField control={form.control} name="username" render={({ field }) => (
             <FormItem className='border-logo-blue'>
               <FormLabel className='border-logo-blue'>Username</FormLabel>
               <FormControl>
-                <Input placeholder="name" {...field} />
+                <Input placeholder={`${name}`} {...field} value={`${name || ""}`} />
               </FormControl>
               {/* <FormDescription>
                 This is your public display name.
@@ -85,7 +89,7 @@ export function ProfileForm() {
             <FormItem className='border-logo-blue'>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="example@99x.io" {...field} />
+                <Input placeholder={`${email}`} {...field} value={`${email || ""}`} />
               </FormControl>
               <FormMessage />
             </FormItem>
