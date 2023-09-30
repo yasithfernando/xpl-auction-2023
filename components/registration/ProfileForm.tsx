@@ -24,9 +24,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Database } from '@/lib/database.types';
-import { useEffect, useState } from 'react';
+import { useSupabase } from '../auth/supabase-provider';
+import { useToast } from '../ui/use-toast';
 
 
 const formSchema = z.object({
@@ -38,12 +37,15 @@ const formSchema = z.object({
   }),
   category: z.enum(["Batsman", "Bowler", "All Rounder"]),
   battingStyle: z.enum(["RHB", "LHB"]),
-  battingLevel: z.array(z.number().min(0).max(100)),
+  battingLevel: z.array(z.number().min(5).max(100)),
   bowlingStyle: z.enum(["RMF", "LMF", "RSP", "LSP", "NONE"]),
-  bowlingLevel: z.array(z.number().min(0).max(100)),
+  bowlingLevel: z.array(z.number().min(5).max(100)),
 })
 
-export function ProfileForm({name, email}: {name: string, email: string}) {
+export function ProfileForm({name, email, id}: {name: string, email: string, id: string}) {
+
+  const {supabase} = useSupabase();
+  const {toast} = useToast();
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -59,19 +61,43 @@ export function ProfileForm({name, email}: {name: string, email: string}) {
     },
   })
  
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+    //const user_id = await supabase.auth.
+    const { data, error } = await supabase.from('players').insert([
+        {
+            user_id: id,
+            name: values.username,
+            gender: "Male",
+            category: values.category,
+            batting_style: values.battingStyle,
+            batting_level: values.battingLevel[0],
+            bowling_style: values.bowlingStyle,
+            bowling_level: values.bowlingLevel[0],
+        },
+    ]).select();
+
+    if (error) {
+        if (error.message.includes("duplicate key value violates unique constraint")) {
+            toast({
+                title: `Error`,
+                description: `Player already exists`,
+                variant: "destructive",
+            });
+        }
+    } else {
+        toast({
+            title: `Success`,
+            description: `Player created successfully`,
+        });
+    }
   }
 
   return (
     <Form {...form}>
       
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-4/5 lg:w-1/2">
-        <FormDescription className='text-tiny-medium'>
-        Please fill in the following details to complete your registration.
-      </FormDescription>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 lg:space-y-6 w-full p-4">
         <FormField control={form.control} name="username" render={({ field }) => (
             <FormItem className='border-logo-blue'>
               <FormLabel className='border-logo-blue'>Username</FormLabel>

@@ -22,9 +22,11 @@ function RegisterButton(){
                 <DialogTitle className="font-radley text-body-normal">Welcome to XPL 2023</DialogTitle>
                 <DialogDescription className="font-radley">
                     To proceed, please sign in with your Microsoft account. This step is necessary to validate your identity.
-                    <AuthForm />
+                    
                 </DialogDescription>
+
                 </DialogHeader>
+                <AuthForm />
             </DialogContent>
         </Dialog>
 

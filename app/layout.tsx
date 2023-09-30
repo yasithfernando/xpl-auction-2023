@@ -1,6 +1,8 @@
 import Topbar from '@/components/shared/Topbar'
 import './globals.css'
 import type { Metadata } from 'next'
+import { Toaster } from '@/components/ui/toaster'
+import SupabaseProvider from '@/components/auth/supabase-provider'
 
 export const metadata: Metadata = {
   title: 'XPL 2023',
@@ -17,15 +19,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Topbar />
-        <main className='flex flex-row'>
-
-          <section className='main-container'>
-            <div className='w-full'>
-              {children}
-            </div>
-          </section>
-        </main>
+        <SupabaseProvider>
+          <Topbar />
+          <main className='flex flex-row'>
+            <section className='main-container'>
+              <div className='w-full'>
+                {children}
+              </div>
+            </section>
+          </main>
+        </SupabaseProvider>
+        <Toaster />
       </body>
     </html>
   )
