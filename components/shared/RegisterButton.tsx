@@ -14,7 +14,7 @@ function RegisterButton(){
 
     return (
         <Dialog>
-            <div className="w-44 text-body-normal font-aspire bg-logo-blue rounded-lg text-center p-2 border-2 border-logo-blue text-light-2">
+            <div className="w-32 text-body-normal font-radley bg-logo-blue rounded-lg text-center p-2 border-2 border-logo-blue text-light-2">
                 <DialogTrigger>Register</DialogTrigger>
             </div>
             <DialogContent>

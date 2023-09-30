@@ -4,6 +4,7 @@ import Image from "next/image"
 import hero from "@/public/assets/backgrounds/hero.png"
 import Countdown from "@/components/shared/Countdown"
 import AuthForm from "@/components/auth/AuthForm"
+import { getPlayers } from "@/lib/actions/player.actions"
 
 const testPlayer = {
   name: "Ronaldo",
@@ -12,7 +13,11 @@ const testPlayer = {
   image: '/assets/test/test-player.jpg'
 }
 
-export default function Home() {
+export default async function Home() {
+
+  const {data,error,status} = await getPlayers();
+
+
   return (
     <div className="flex min-h-screen flex-col lg:px-24 py-2 lg:py-7">
       <div className="flex flex-col justify-center items-center w-full pt-3">
@@ -29,19 +34,10 @@ export default function Home() {
           {/* <Image src="/assets/backgrounds/hero.png" alt="XPL 2023" fill={true} objectFit="cover" className="rounded-lg" /> */}
         </div>
         
-
         <div className="grid grid-cols-3 gap-2 md:grid-cols-4 lg:grid-cols-4 2xl:grid-cols-6 lg:gap-4 mt-4">
-          <PlayerCard player={testPlayer} />
-          <PlayerCard player={testPlayer} />
-          <PlayerCard player={testPlayer} />
-          <PlayerCard player={testPlayer} />
-          <PlayerCard player={testPlayer} />
-          <PlayerCard player={testPlayer} />
-          <PlayerCard player={testPlayer} />
-          <PlayerCard player={testPlayer} />
-
-
-
+          {data?.map((player) => (
+            <PlayerCard key={player.player_id} player={player} />
+          ))}
         </div>
       </div>
       

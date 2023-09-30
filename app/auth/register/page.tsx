@@ -25,7 +25,6 @@ export default function page() {
             email: user?.email as string,
             id: user?.id as string,
         });
-        console.log(user);
         } catch (error) {
         console.error('Error fetching user data:', error);
         } finally {

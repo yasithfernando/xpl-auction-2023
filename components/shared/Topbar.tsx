@@ -21,7 +21,7 @@ async function Topbar() {
 
                 {user ? (
                     <form action="/auth/sign-out" method="post">
-                        <button className="w-44 text-body-normal font-aspire bg-light-1 rounded-lg text-center p-2 border-2 border-logo-blue text-logo-blue">
+                        <button className="w-32 text-body-normal font-radley bg-light-1 rounded-lg text-center p-1 border-2 border-logo-blue text-logo-blue">
                             LOGOUT
                         </button>
                     </form>
