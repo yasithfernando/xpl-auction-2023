@@ -1,5 +1,5 @@
 "use client"
-import { useForm} from 'react-hook-form';
+import { set, useForm} from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 
@@ -24,7 +24,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import Link from 'next/link';
+import { useSupabase } from '../auth/supabase-provider';
+import { useToast } from '../ui/use-toast';
 
 
 const formSchema = z.object({
@@ -36,18 +37,21 @@ const formSchema = z.object({
   }),
   category: z.enum(["Batsman", "Bowler", "All Rounder"]),
   battingStyle: z.enum(["RHB", "LHB"]),
-  battingLevel: z.array(z.number().min(0).max(100)),
+  battingLevel: z.array(z.number().min(5).max(100)),
   bowlingStyle: z.enum(["RMF", "LMF", "RSP", "LSP", "NONE"]),
-  bowlingLevel: z.array(z.number().min(0).max(100)),
+  bowlingLevel: z.array(z.number().min(5).max(100)),
 })
 
-export function ProfileForm() {
-    // 1. Define your form.
+export function ProfileForm({name, email, id}: {name: string, email: string, id: string}) {
+
+  const {supabase} = useSupabase();
+  const {toast} = useToast();
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      email: "",
+      username: name,
+      email: email,
       category: "Batsman",
       battingStyle: "RHB",
       battingLevel: [0],
@@ -57,22 +61,48 @@ export function ProfileForm() {
     },
   })
  
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+    //const user_id = await supabase.auth.
+    const { data, error } = await supabase.from('players').insert([
+        {
+            user_id: id,
+            name: values.username,
+            gender: "Male",
+            category: values.category,
+            batting_style: values.battingStyle,
+            batting_level: values.battingLevel[0],
+            bowling_style: values.bowlingStyle,
+            bowling_level: values.bowlingLevel[0],
+        },
+    ]).select();
+
+    if (error) {
+        if (error.message.includes("duplicate key value violates unique constraint")) {
+            toast({
+                title: `Error`,
+                description: `Player already exists`,
+                variant: "destructive",
+            });
+        }
+    } else {
+        toast({
+            title: `Success`,
+            description: `Player created successfully`,
+        });
+    }
   }
-  // ...
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-4/5 lg:w-1/2">
+      
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 lg:space-y-6 w-full p-4">
         <FormField control={form.control} name="username" render={({ field }) => (
             <FormItem className='border-logo-blue'>
               <FormLabel className='border-logo-blue'>Username</FormLabel>
               <FormControl>
-                <Input placeholder="name" {...field} />
+                <Input placeholder={`${name}`} {...field} value={`${name || ""}`} />
               </FormControl>
               {/* <FormDescription>
                 This is your public display name.
@@ -85,7 +115,7 @@ export function ProfileForm() {
             <FormItem className='border-logo-blue'>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="example@99x.io" {...field} />
+                <Input placeholder={`${email}`} {...field} value={`${email || ""}`} />
               </FormControl>
               <FormMessage />
             </FormItem>

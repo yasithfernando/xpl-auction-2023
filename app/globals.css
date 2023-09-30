@@ -4,17 +4,17 @@
  
 @font-face {
   font-family: "Porter";
-  src: url(../../public/fonts/PorterSansBlock-Regular.ttf);
+  src: url(../public/fonts/PorterSansBlock-Regular.ttf);
 }
 
 @font-face {
   font-family: "Radley";
-  src: url(../../public/fonts/RadleySans-ZVYBK.ttf);
+  src: url(../public/fonts/RadleySans-ZVYBK.ttf);
 }
 
 @font-face {
   font-family: "Aspire";
-  src: url(../../public/fonts/aspire-smallcaps/AspireSCBlackOblique-Regular.ttf);
+  src: url(../public/fonts/aspire-smallcaps/AspireSCBlackOblique-Regular.ttf);
 }
 
 @layer components {

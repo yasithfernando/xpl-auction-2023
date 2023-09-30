@@ -80,6 +80,13 @@ module.exports = {
           fontWeight: "500",
         },
       ],
+      "heading4-normal": [
+        "20px",
+        {
+          lineHeight: "140%",
+          fontWeight: "400",
+        },
+      ],
       "body-bold": [
         "18px",
         {
@@ -260,7 +267,6 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
-      
 
       fontFamily: {
         porter: ["Porter", "sans-serif"],
