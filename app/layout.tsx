@@ -1,15 +1,13 @@
-import Topbar from '../../components/shared/Topbar'
-import '../styles/globals.css'
-
+import Topbar from '@/components/shared/Topbar'
+import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'XPL Auction',
+  title: 'XPL 2023',
   description: 'An auction platform for XPL 2023',
 }
+
+
 
 export default function RootLayout({
   children,
@@ -18,9 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
+      <body>
         <Topbar />
         <main className='flex flex-row'>
+
           <section className='main-container'>
             <div className='w-full'>
               {children}
