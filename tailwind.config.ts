@@ -80,6 +80,13 @@ module.exports = {
           fontWeight: "500",
         },
       ],
+      "heading4-normal": [
+        "20px",
+        {
+          lineHeight: "140%",
+          fontWeight: "400",
+        },
+      ],
       "body-bold": [
         "18px",
         {
@@ -105,6 +112,13 @@ module.exports = {
         "18px",
         {
           lineHeight: "140%",
+          fontWeight: "400",
+        },
+      ],
+      "body2-normal": [
+        "14px",
+        {
+          lineHeight: "110%",
           fontWeight: "400",
         },
       ],
@@ -181,7 +195,7 @@ module.exports = {
       "tiny-medium": [
         "10px",
         {
-          lineHeight: "140%",
+          lineHeight: "110%",
           fontWeight: "500",
         },
       ],
@@ -195,6 +209,14 @@ module.exports = {
     },
     extend: {
       colors: {
+        "logo-blue": "#2E3192",
+        "logo-skyblue": "#00AEEF",
+        "logo-pink": "#EC008C",
+        "logo-yellow": "#FFC416",
+        "logo-orange": "#F38420",
+        "logo-red": "#E51D2B",
+        "dark-blue": "#062C7D",
+
         "primary-500": "#877EFF",
         "secondary-500": "#FFB620",
         blue: "#0095F6",
@@ -210,11 +232,46 @@ module.exports = {
         "light-4": "#5C5C7B",
         "gray-1": "#697C89",
         glassmorphism: "rgba(16, 16, 18, 0.60)",
+
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
 
       fontFamily: {
         porter: ["Porter", "sans-serif"],
         radley: ["Radley", "sans"],
+        aspire: ["Aspire", "sans-serif"],
       },
       boxShadow: {
         "count-badge": "0px 0px 6px 2px rgba(219, 188, 159, 0.30)",
