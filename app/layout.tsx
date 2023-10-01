@@ -10,27 +10,28 @@ export const metadata: Metadata = {
 }
 
 
-
+export const dynamic = 'force-dynamic'
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  
   return (
-    <html lang="en">
-      <body>
-        <SupabaseProvider>
-          <Topbar />
-          <main className='flex flex-row'>
-            <section className='main-container'>
-              <div className='w-full'>
-                {children}
-              </div>
-            </section>
-          </main>
-        </SupabaseProvider>
-        <Toaster />
-      </body>
-    </html>
+    <SupabaseProvider>
+      <html lang="en">
+        <body>
+            <Topbar />
+            <main className='flex flex-row'>
+              <section className='main-container'>
+                <div className='w-full'>
+                  {children}
+                </div>
+              </section>
+            </main>
+          <Toaster />
+        </body>
+      </html>
+    </SupabaseProvider>
   )
 }

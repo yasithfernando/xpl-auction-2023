@@ -8,7 +8,7 @@ export const metadata = {
   title: 'XPL 2023 ',
   description: 'Manager Dashboard for XPL Auction 2023',
 }
-
+export const dynamic = 'force-dynamic'
 export default function RootLayout({
   children,
 }: {
