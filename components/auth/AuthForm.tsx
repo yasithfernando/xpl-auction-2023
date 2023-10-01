@@ -8,6 +8,10 @@ import { useSupabase } from './supabase-provider'
 export default function AuthForm() {
   //const supabase = createClientComponentClient<Database>()
 
+  const isBrowser = typeof window !== 'undefined';
+  const origin = isBrowser ? window.location.origin : 'http://localhost:3000';
+  const redirectUrl = `${origin}/auth/callback`;
+
   const { supabase } = useSupabase();
 
   
@@ -35,7 +39,7 @@ export default function AuthForm() {
       theme="default"
       showLinks={false}
       providers={["azure"]}
-      redirectTo="http://localhost:3000/auth/callback"
+      redirectTo={redirectUrl}
     />
   )
 }
