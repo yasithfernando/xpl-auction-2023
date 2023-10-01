@@ -7,7 +7,7 @@ import { useSupabase } from './supabase-provider'
 
 export default function AuthForm() {
   //const supabase = createClientComponentClient<Database>()
-  const redirectUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/auth/callback`;
+  const redirectUrl = 'https://xpl-auction-2023-7w8qlox4d-ishanyasith.vercel.app/auth/callback';
 
   const { supabase } = useSupabase();
 
