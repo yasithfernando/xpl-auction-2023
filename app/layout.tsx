@@ -9,8 +9,6 @@ export const metadata: Metadata = {
   description: 'An auction platform for XPL 2023',
 }
 
-
-export const dynamic = 'force-dynamic'
 export default function RootLayout({
   children,
 }: {
