@@ -1,29 +1,69 @@
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face{
+ 
+@font-face {
   font-family: "Porter";
   src: url(../public/fonts/PorterSansBlock-Regular.ttf);
 }
 
-@layer components{
+@font-face {
+  font-family: "Radley";
+  src: url(../public/fonts/RadleySans-ZVYBK.ttf);
+}
+
+@font-face {
+  font-family: "Aspire";
+  src: url(../public/fonts/aspire-smallcaps/AspireSCBlackOblique-Regular.ttf);
+}
+
+@layer components {
   .main-container {
-      @apply flex min-h-screen flex-1 flex-col items-center px-6 pb-10 pt-16 max-md:pb-32 sm:px-10 lg:px-32;
-    }
+    @apply flex min-h-screen flex-1 flex-col items-center px-4 pb-10 pt-16 max-md:pb-32 sm:px-10 lg:px-32 bg-light-1;
+  }
+
   .topbar {
-      @apply fixed top-0 z-30 flex w-full items-center justify-between bg-light-2 px-6 py-3 lg:px-32;
-    }
+    @apply fixed top-0 z-30 flex w-full items-center justify-between bg-light-2 py-2 lg:px-32;
+  }
+
+  .countdown-box{
+    @apply flex items-center justify-center mx-1 h-12 lg:h-16 w-12 lg:w-16 bg-indigo-800 lg:text-heading1-normal rounded-lg;
+  }
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -31,13 +71,17 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+  body {
+    color: rgb(var(--foreground-rgb));
+      background: linear-gradient(to bottom,
+          transparent,
+          rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+    @apply bg-background text-foreground;
+  }
 }
