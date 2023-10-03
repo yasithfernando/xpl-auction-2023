@@ -1,19 +1,12 @@
 
 import PlayerCard from "@/components/player/PlayerCard"
-import Image from "next/image"
 import hero from "@/public/assets/backgrounds/hero.png"
 import Countdown from "@/components/shared/Countdown"
-import AuthForm from "@/components/auth/AuthForm"
 import { getPlayers } from "@/lib/actions/player.actions"
 
-const testPlayer = {
-  name: "Ronaldo",
-  position: "Striker",
-  team: "Manchester United",
-  image: '/assets/test/test-player.jpg'
-}
-
 export default async function Home() {
+
+  console.log("Hello World");
 
   const {data,error,status} = await getPlayers();
 
