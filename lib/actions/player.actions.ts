@@ -2,6 +2,7 @@
 import { Player } from '../models/player.model'
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { createClient } from '@supabase/supabase-js';
+import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers'
 
 export async function getPlayers(){
@@ -13,8 +14,10 @@ export async function getPlayers(){
         const { data, error, status } = await supabase
           .from("players")
           .select('*');
-
+          
+        revalidatePath('/');
         return {data,error,status};
+
 
     } catch (error:any) {
         console.log(error.message);
