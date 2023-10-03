@@ -1,13 +1,14 @@
 "use server"
 import { Player } from '../models/player.model'
-import { createServerComponentClient, createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers'
-import { Database } from '../types/supabase';
-import { toast } from '@/components/ui/use-toast';
-
-const supabase = createServerActionClient({ cookies });
 
 export async function getPlayers(){
+    const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    )
     try {
         const { data, error, status } = await supabase
           .from("players")
@@ -22,6 +23,7 @@ export async function getPlayers(){
 }
 
 export async function createPlayer(player:Player,id:string){
+    const supabase = createServerActionClient({ cookies });
     
     try {
         const { data, error, status } = await supabase

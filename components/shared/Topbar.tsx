@@ -1,13 +1,29 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import RegisterButton from './RegisterButton';
+import { useSupabase } from "../auth/supabase-provider";
+import { useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
 
-async function Topbar() {
-    const supabase = createServerComponentClient({cookies})
+function Topbar() {
+    const [user, setUser] = useState<User>();
+    const {supabase} = useSupabase();
 
-    const {data: {user},} = await supabase.auth.getUser();
+    async function isUserLoggedIn() {
+        const { data: {user}, } = await supabase.auth.getUser();
+        return user;
+    }
+
+    useEffect(() => {
+        async function fetchUser() {
+            const userData = await isUserLoggedIn();
+            if (userData) {
+                setUser(userData);
+            }
+        }
+        fetchUser();
+    }, []);
 
     return (
         <nav className="topbar">
@@ -15,10 +31,8 @@ async function Topbar() {
                 <div className="relative w-32 lg:w-40 h-10 lg:h-12">
                     <Image src="/assets/logos/xpl-logo.svg" objectFit="cover" fill={true} alt="XPL 2023" />
                 </div>
-                {/* <p className="text-heading3-normal lg:text-heading2-normal text-dark-2 font-porter">XPL 2023</p> */}
             </Link>
             <div className="flex flex-row gap-3 mr-4">
-
                 {user ? (
                     <form action="/auth/sign-out" method="post">
                         <button className="w-32 text-body-normal font-radley bg-light-1 rounded-lg text-center p-1 border-2 border-logo-blue text-logo-blue">
@@ -29,13 +43,10 @@ async function Topbar() {
                     <div className='flex flex-row gap-3'>
                         <RegisterButton />
                     </div>
-                )}    
-
+                )}
             </div>
         </nav>
-    )
+    );
 }
-
-
 
 export default Topbar;

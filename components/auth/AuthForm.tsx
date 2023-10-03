@@ -7,6 +7,7 @@ import { useSupabase } from './supabase-provider'
 
 export default function AuthForm() {
   //const supabase = createClientComponentClient<Database>()
+  const redirectUrl = 'https://xpl-auction-2023-7w8qlox4d-ishanyasith.vercel.app/auth/callback';
 
   const { supabase } = useSupabase();
 
@@ -35,7 +36,7 @@ export default function AuthForm() {
       theme="default"
       showLinks={false}
       providers={["azure"]}
-      redirectTo="http://localhost:3000/auth/callback"
+      redirectTo='https://xpl-auction-2023-7w8qlox4d-ishanyasith.vercel.app/auth/callback'
     />
   )
 }
