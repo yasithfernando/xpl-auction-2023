@@ -36,7 +36,7 @@ export default function AuthForm() {
       theme="default"
       showLinks={false}
       providers={["azure"]}
-      redirectTo='https://xpl-auction-2023-7w8qlox4d-ishanyasith.vercel.app/auth/callback'
+      redirectTo='https://xpl-auction-2023.vercel.app/auth/callback'
     />
   )
 }
